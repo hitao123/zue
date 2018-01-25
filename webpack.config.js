@@ -1,33 +1,33 @@
 /**
  * Created by huahaitao on 18/1/24.
  */
-var path = require('path');
-var CopyWebpackPlugin = require('copy-webpack-plugin');
+const path = require('path');
+const webpack = require("webpack");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: {
-    index: ['./src/observer/observer.js'],
-    dist: ['./example/index.js']
-  },
+  entry: path.resolve(__dirname, './example/index.js'),
   output: {
-    path: path.join(__dirname, '/dist'),
+    path: path.resolve(__dirname, './dist'),
     filename: '[name].js'
   },
+  resolve: {
+    extensions: ['.js']
+  },
   module: {
-    // preLoaders: [
-    //   {
-    //     test: /\.js$/,
-    //     loader: "eslint-loader",
-    //     exclude: /node_modules/
-    //   }
-    // ],
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel'
+        use: 'babel-loader'
       }
     ]
   },
-  plugins: [new CopyWebpackPlugin([{ from: './example/index.html' }], {})]
-};
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './example/index.html',
+      filename: "index.html",
+    }),
+    new webpack.NoEmitOnErrorsPlugin()
+  ]
+}

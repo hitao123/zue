@@ -1,5 +1,6 @@
 /node_modules
-/server.js
+/dist
 .idea/
 node_modules/
 npm-debug.log
+package-lock.json

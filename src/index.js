@@ -4,6 +4,7 @@
  */
 import _init from './instance/init';
 import { _compile, _compileElement, _compileText, _compileNode } from './instance/compile';
+import $mount from './api/lifecycle';
 
 function Zue(options) {
   this._init(options);
@@ -15,7 +16,8 @@ Zue.prototype = {
   _compile,
   _compileElement,
   _compileText,
-  _compileNode
+  _compileNode,
+  $mount
 }
 
 module.exports = window.Zue = Zue;

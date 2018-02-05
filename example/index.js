@@ -1,4 +1,14 @@
-import Observer from '../src/observer/observer.js';
+/**
+ * created by Billow 2018/2/5
+ */
+import Zue from '../src/index';
 
-let ob = Observer.create({name: 'huahaitao', age: 12});
-console.log(ob);
+const app = new Zue({
+  el: '#app',
+  data: {
+    name: 'hht',
+    age: 24
+  }
+});
+
+window.app = app;

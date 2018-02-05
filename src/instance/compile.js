@@ -1,8 +1,8 @@
 /**
  * created by huahaitao 2018/2/4
  */
-
-// 节点类型 ELEMENT_NODE ---> <div>    TEXT_NODE ---->
+// 节点类型 ELEMENT_NODE  TEXT_NODE
+import textParser from '../parse/text';
 
 let fragment, currentNodeList = [];
 
@@ -19,7 +19,7 @@ function _compileElement(node) {
   // 处理节点属性
   if (node.hasAttributes()) {
     let attrs = node.attributes;
-    // Array.from
+    // Array.from(attrs).forEach((attr) => {})
     Array.prototype.slice.call(attrs).forEach((attr) => {
       newNode.setAttribute(attr.name, attr.value);
     });
@@ -27,21 +27,25 @@ function _compileElement(node) {
   let currentNode = currentNodeList[currentNodeList.length -1].appendChild(newNode);
   if (node.hasChildNodes()) {
     currentNodeList.push(currentNode);
-    Array.prototype.slice.call(childNodes).forEach(this._compileNode, this);
+    Array.prototype.slice.call(node.childNodes).forEach(this._compileNode, this);
   }
   currentNodeList.pop();
 }
 
 function _compileText(node) {
-  let nodeValue = node.nodeValue;
+  let tokens = textParser(node.nodeValue);
+  if (!tokens) return;
 
-  if (nodeValue === '') return;
-  let patt = /{{\w+}}/g;
-  let ret = nodeValue.match(patt);
+  tokens.forEach((token) => {
+    if (token.tag) {
+      // 指令节点
+      let value = token.value;
+      let el = document.createTextNode('');
+    } else {
+      // 普通文本节点
+      let el = document.createTextNode('');
 
-  if (!ret) return;
-
-  ret.forEach((value) => {
+    }
     let property = value.replace(/[{}]/g, '');
     nodeValue = nodeValue.replace(value, this.$data[property]);
   }, this);

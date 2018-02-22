@@ -18,6 +18,6 @@ Zue.prototype = {
   _compileText,
   _compileNode,
   $mount
-}
+};
 
 module.exports = window.Zue = Zue;

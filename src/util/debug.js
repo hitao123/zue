@@ -10,4 +10,4 @@
 
 export const warn = function() {
   console.warn.apply(console, arguments);
-}
+};

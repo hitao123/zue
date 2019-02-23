@@ -7,6 +7,9 @@ import { _compile, _compileElement, _compileText, _compileNode } from './instanc
 import $mount from './api/lifecycle';
 
 function Zue(options) {
+  if (!(this instanceof Zue)) {
+    throw Error('Zue should be called by new Zue');
+  }
   this._init(options);
 }
 

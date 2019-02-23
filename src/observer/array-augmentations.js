@@ -4,13 +4,13 @@
  */
 
 const aryMethods = [
-  "push",
-  "pop",
-  "shift",
-  "unshift",
-  "splice",
-  "sort",
-  "reverse"
+  'push',
+  'pop',
+  'shift',
+  'unshift',
+  'splice',
+  'sort',
+  'reverse'
 ]; // 这几个方法会改变原来数组
 const arrayAugmentations = [];
 
@@ -19,7 +19,7 @@ aryMethods.forEach(method => {
   arrayAugmentations[method] = function() {
     let result = original.apply(this, arguments);
     let ob = this.$observer;
-    ob.notify("set", null, this.length);
+    ob.notify('set', null, this.length);
     return result;
   };
 });

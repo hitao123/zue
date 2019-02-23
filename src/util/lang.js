@@ -20,7 +20,7 @@ export const define = function(obj, key, val, enumerable) {
 };
 
 /**
- * 这不需要多加解释吧
+ * 浅拷贝
  * @param to
  * @param from
  */

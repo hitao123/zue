@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>watch</title>
+</head>
+<body>
+  <h1>watch</h1>
+  <script src="./src/instance/watch.js"></script>
+  <script>
+    var ex1 = {
+      attr1: "initial value of attr1",
+      attr2: "initial value of attr2"
+    };
+
+    //defining a 'watcher' for an attribute
+    watch(ex1, "attr1", function(){
+      alert("attr1 changed!");
+    });
+
+    //when changing the attribute its watcher will be invoked
+    ex1.attr1 = "other value";
+  </script>
+</body>
+</html>
